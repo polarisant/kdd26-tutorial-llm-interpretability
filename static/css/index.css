@@ -1,0 +1,567 @@
+/* ============================================================
+   KDD 2026 Tutorial — LLM Interpretability
+   Stylesheet inspired by the GenRec tutorial design
+   ============================================================ */
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+}
+body {
+  font-family: 'Noto Sans', sans-serif;
+  color: #1f2937;
+  line-height: 1.7;
+  padding-top: 3.5rem;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: saturate(180%) blur(6px);
+  -webkit-backdrop-filter: saturate(180%) blur(6px);
+  border-bottom: 1px solid #eee;
+  z-index: 30;
+}
+.brand-text {
+  font-size: 0.95rem;
+  color: #111 !important;
+  letter-spacing: -0.01em;
+}
+.navbar-item {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #374151;
+  transition: color 0.2s;
+}
+.navbar-item:hover {
+  color: hsl(204, 86%, 45%);
+  background: transparent !important;
+}
+
+/* ---------- Hero / Publication Header ---------- */
+.publication-header {
+  background: linear-gradient(170deg, #f0f5ff 0%, #ffffff 50%, #f8f0ff 100%);
+  padding: 3.5rem 1.5rem 3rem;
+}
+.publication-venue {
+  margin-bottom: 1.2rem;
+}
+.venue-tag {
+  background: linear-gradient(135deg, hsl(204, 86%, 50%), hsl(264, 60%, 55%));
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 0.85rem !important;
+  padding: 0.55em 1.2em;
+}
+.publication-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.25;
+  margin-bottom: 1.3rem;
+  max-width: 52rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.publication-authors {
+  font-size: 1rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+.publication-authors .author {
+  white-space: nowrap;
+}
+.publication-authors sup {
+  font-size: 0.7em;
+  color: hsl(204, 86%, 45%);
+}
+.publication-affiliations {
+  font-size: 0.88rem;
+  color: #6b7280;
+  margin-bottom: 1.3rem;
+}
+.publication-affiliations .affiliation {
+  margin: 0 0.6rem;
+}
+.publication-meta {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.publication-meta .tag {
+  font-size: 0.82rem !important;
+  font-weight: 500;
+  border: 1px solid #e5e7eb;
+}
+.publication-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.disabled-btn {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---------- Section Titles ---------- */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+.section-subtitle {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  padding: 3.5rem 1.5rem;
+}
+.section-light {
+  background: #f9fafb;
+}
+
+/* ---------- Abstract ---------- */
+.abstract-content p {
+  font-size: 0.95rem;
+  color: #374151;
+  text-align: justify;
+}
+
+/* ---------- Highlight Cards ---------- */
+.highlight-cards {
+  margin-top: 1rem;
+}
+.card-highlight {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem 1.2rem;
+  text-align: center;
+  transition: transform 0.25s, box-shadow 0.25s;
+  height: 100%;
+}
+.card-highlight:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+.card-highlight .icon-large {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: hsl(204, 86%, 95%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.8rem;
+}
+.card-highlight .icon-large i {
+  font-size: 1.2rem;
+  color: hsl(204, 86%, 45%);
+}
+.card-highlight h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.4rem;
+}
+.card-highlight p {
+  font-size: 0.85rem;
+  color: #6b7280;
+  line-height: 1.55;
+}
+
+/* ---------- Audience ---------- */
+.audience-heading {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.6rem;
+}
+.audience-heading i {
+  color: hsl(204, 86%, 45%);
+  margin-right: 0.3rem;
+}
+.audience-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+.audience-list li {
+  font-size: 0.9rem;
+  color: #374151;
+  padding: 0.35rem 0;
+  padding-left: 1.3rem;
+  position: relative;
+}
+.audience-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: hsl(204, 86%, 65%);
+}
+.audience-list .check,
+.audience-list .star {
+  position: absolute;
+  left: 0;
+  font-size: 0.85rem;
+}
+.audience-list .check { color: #16a34a; }
+.audience-list .star { color: #f59e0b; }
+.audience-list li:has(.check)::before,
+.audience-list li:has(.star)::before {
+  display: none;
+}
+
+/* ---------- Schedule ---------- */
+.schedule {
+  border-left: 3px solid hsl(204, 86%, 80%);
+  padding-left: 0;
+  margin-top: 1rem;
+}
+.schedule-item {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px dashed #e5e7eb;
+  margin-left: 1.5rem;
+  position: relative;
+}
+.schedule-item::before {
+  content: '';
+  position: absolute;
+  left: -1.5rem;
+  top: 1.7rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: hsl(204, 86%, 50%);
+  border: 2px solid #fff;
+  transform: translateX(-50%);
+  margin-left: -1.5px;
+}
+.schedule-item:last-child {
+  border-bottom: none;
+}
+.schedule-time {
+  min-width: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  flex-shrink: 0;
+}
+.schedule-duration {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: hsl(204, 86%, 40%);
+}
+.schedule-slot {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.schedule-detail h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.2rem;
+}
+.schedule-format {
+  font-size: 0.78rem;
+  color: hsl(204, 86%, 45%);
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 0.3rem;
+}
+.schedule-detail ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+.schedule-detail li {
+  font-size: 0.88rem;
+  color: #4b5563;
+  line-height: 1.5;
+  margin-bottom: 0.15rem;
+}
+
+/* Coffee Break */
+.schedule-break {
+  background: #fffaf2;
+  border-radius: 8px;
+  border-bottom-color: #fde6c4;
+  padding: 0.8rem 1rem;
+}
+.schedule-break::before {
+  background: #f59e0b;
+}
+.schedule-break .schedule-slot {
+  color: #b45309;
+}
+.schedule-break .schedule-detail h3 {
+  color: #b45309;
+}
+
+/* ---------- Presenters ---------- */
+.presenter-grid {
+  margin-top: 1.5rem;
+}
+.presenter-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.6rem 1.3rem;
+  text-align: center;
+  transition: transform 0.25s, box-shadow 0.25s;
+  height: 100%;
+}
+.presenter-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+}
+.presenter-avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, hsl(204, 86%, 92%), hsl(264, 60%, 92%));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.8rem;
+}
+.presenter-avatar i {
+  font-size: 1.5rem;
+  color: hsl(204, 86%, 45%);
+}
+.presenter-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.15rem;
+}
+.presenter-affil {
+  font-size: 0.82rem;
+  color: hsl(204, 86%, 45%);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+.presenter-bio {
+  font-size: 0.83rem;
+  color: #6b7280;
+  line-height: 1.55;
+  text-align: left;
+}
+.contributor-card {
+  border-style: dashed;
+}
+
+/* ---------- References ---------- */
+.references-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.reference-item {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+.reference-item:last-child {
+  border-bottom: none;
+}
+.ref-tag {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: hsl(204, 86%, 45%);
+  background: hsl(204, 86%, 95%);
+  padding: 0.2em 0.6em;
+  border-radius: 4px;
+  white-space: nowrap;
+  margin-top: 0.15rem;
+}
+.reference-item p {
+  font-size: 0.85rem;
+  color: #4b5563;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ---------- BibTeX ---------- */
+pre {
+  background: #1e293b;
+  color: #e2e8f0;
+  border-radius: 10px;
+  padding: 1.3rem 1.5rem;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+/* ---------- Slides ---------- */
+.slides-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.slides-item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.slides-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+}
+.slides-icon {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: hsl(204, 86%, 95%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.slides-icon i {
+  font-size: 1.2rem;
+  color: hsl(204, 86%, 45%);
+}
+.slides-info {
+  flex: 1;
+}
+.slides-info h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.15rem;
+}
+.slides-info p {
+  font-size: 0.83rem;
+  color: #6b7280;
+  margin: 0;
+}
+.slides-actions {
+  flex-shrink: 0;
+}
+
+/* ---------- Contact ---------- */
+.contact-text {
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+}
+.contact-cards {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.contact-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0.8rem 1.5rem;
+  color: hsl(204, 86%, 45%);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+.contact-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+  border-color: hsl(204, 86%, 65%);
+  color: hsl(204, 86%, 35%);
+}
+.contact-card i {
+  font-size: 1.1rem;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  background: #111827;
+  padding: 2rem 1.5rem;
+}
+.footer-links {
+  margin-bottom: 0.8rem;
+}
+.footer-links a {
+  color: #9ca3af;
+  font-size: 1.2rem;
+  margin: 0 0.5rem;
+  transition: color 0.2s;
+}
+.footer-links a:hover {
+  color: #fff;
+}
+.footer-text {
+  color: #9ca3af;
+  font-size: 0.82rem;
+  margin-bottom: 0.3rem;
+}
+.footer-credit {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+.footer-credit a {
+  color: #9ca3af;
+  text-decoration: underline;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .publication-title {
+    font-size: 1.7rem !important;
+  }
+  .section-title {
+    font-size: 1.5rem;
+  }
+  .schedule-item {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .schedule-time {
+    flex-direction: row;
+    gap: 0.8rem;
+    border-bottom: 1px dashed #e5e7eb;
+    padding-bottom: 0.4rem;
+  }
+  .publication-meta {
+    flex-direction: column;
+    align-items: center;
+  }
+  .slides-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+}

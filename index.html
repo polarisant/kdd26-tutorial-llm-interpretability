@@ -1,0 +1,541 @@
+<!--
+ * @Author             : xiwei.zw (xiwei.zw@alibaba-inc.com)
+ * @Date               : 2026-06-23 17:09
+ * @Last Modified By   : xiwei.zw (xiwei.zw@alibaba-inc.com)
+ * @Last Modified Date : 2026-06-23 17:09
+ * @Description        : 
+ * -------- 
+ * Copyright (c) 2026 Alibaba Inc. 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interpretability in the Era of LLMs — KDD 2026 Tutorial</title>
+  <meta name="description" content="KDD 2026 Tutorial: Interpretability in the Era of Large Language Models: Mechanistic Methodology, Empirical Practices, and Applications">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,600,700|Playfair+Display:700&display=swap" rel="stylesheet">
+
+  <!-- Bulma CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <!-- Local CSS -->
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <!-- JS -->
+  <script defer src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item brand-text" href="#">
+        <strong>LLM Interpretability @ KDD 2026</strong>
+      </a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="navMenu" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#abstract">Abstract</a>
+        <a class="navbar-item" href="#overview">Overview</a>
+        <a class="navbar-item" href="#audience">Audience</a>
+        <a class="navbar-item" href="#schedule">Schedule</a>
+        <a class="navbar-item" href="#presenters">Presenters</a>
+        <a class="navbar-item" href="#references">References</a>
+        <a class="navbar-item" href="#slides">Slides</a>
+        <a class="navbar-item" href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero publication-header" id="top">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <p class="publication-venue">
+        <span class="tag is-medium is-rounded venue-tag">
+          <i class="fas fa-award"></i>&nbsp; KDD 2026 Tutorial
+        </span>
+      </p>
+      <h1 class="publication-title">
+        Interpretability in the Era of Large Language Models:<br>
+        Mechanistic Methodology, Empirical Practices, and Applications
+      </h1>
+
+      <div class="publication-authors">
+        <span class="author">Wei Zhang<sup>1</sup></span>,
+        <span class="author">Zhengfu He<sup>2</sup></span>,
+        <span class="author">Lulu Zhang<sup>1</sup></span>,
+        <span class="author">Xuanjing Huang<sup>2</sup></span>,
+        <span class="author">Jieping Ye<sup>1</sup></span>,
+        <span class="author">Xu Shen<sup>1</sup></span>
+      </div>
+
+      <div class="publication-affiliations">
+        <span class="affiliation"><sup>1</sup> Tongyi Lab, Alibaba Group</span>
+        <span class="affiliation"><sup>2</sup> Fudan University</span>
+      </div>
+
+      <div class="publication-meta">
+        <span class="tag is-light is-medium"><i class="fas fa-calendar-alt"></i>&nbsp; August 09–13, 2026</span>
+        <span class="tag is-light is-medium"><i class="fas fa-clock"></i>&nbsp; Half-Day (3 hours)</span>
+        <span class="tag is-light is-medium"><i class="fas fa-map-marker-alt"></i>&nbsp; Jeju Island, Korea</span>
+      </div>
+
+      <div class="publication-links">
+        <a class="button is-small is-rounded is-link" href="#">
+          <span class="icon"><i class="fas fa-file-pdf"></i></span>
+          <span>Paper</span>
+        </a>
+        <a class="button is-small is-rounded is-link is-outlined" href="#">
+          <span class="icon"><i class="fab fa-github"></i></span>
+          <span>Code & Materials</span>
+        </a>
+        <a class="button is-small is-rounded is-link is-outlined" href="#schedule">
+          <span class="icon"><i class="fas fa-list-ol"></i></span>
+          <span>Schedule</span>
+        </a>
+        <a class="button is-small is-rounded is-warning is-outlined disabled-btn" href="#">
+          <span class="icon"><i class="fas fa-presentation-screen"></i></span>
+          <span>Slides (TBA)</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract -->
+<section class="section" id="abstract">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-two-thirds">
+        <h2 class="section-title">Abstract</h2>
+        <div class="content abstract-content">
+          <p>
+            The rapid evolution of Large Language Models (LLMs) has brought unprecedented capabilities across reasoning, coding, and multi-modal tasks. However, as performance scales, their opaque "black-box" nature raises a critical challenge: <strong>How can we trace the origins of emergent intelligence, and more importantly, how can we leverage these internal mechanisms to guide model optimization?</strong>
+          </p>
+          <p>
+            This tutorial provides a comprehensive, end-to-end view of LLM interpretability, transitioning from <em>microscopic neural analysis</em> to <em>macroscopic application and deployment</em>. It is systematically organized into five core sections covering the evolution of interpretability, foundational methodologies, anatomy of LLMs, practical applications including <strong>interpretability-guided data synthesis</strong>, <strong>pinpoint training</strong>, and <strong>pinpoint quantization</strong>, and advanced topics on frontier architectures.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Overview: What You Will Learn -->
+<section class="section" id="overview">
+  <div class="container">
+    <h2 class="section-title has-text-centered">What You Will Learn</h2>
+    <p class="section-subtitle has-text-centered">From microscopic neural analysis to macroscopic industrial deployment</p>
+    <div class="columns is-multiline is-centered highlight-cards">
+      <div class="column is-one-quarter-desktop is-half-tablet">
+        <div class="card-highlight">
+          <div class="icon-large"><i class="fas fa-unlock-keyhole"></i></div>
+          <h3>Unlocking the Black Box</h3>
+          <p>Evolution of LLM interpretability and recent breakthroughs from leading research teams (Anthropic, OpenMOSS).</p>
+        </div>
+      </div>
+      <div class="column is-one-quarter-desktop is-half-tablet">
+        <div class="card-highlight">
+          <div class="icon-large"><i class="fas fa-flask"></i></div>
+          <h3>Methodology & Theory</h3>
+          <p>Mathematical frameworks for transformers, biological mechanisms, path patching, logit lens, and neuron descriptions.</p>
+        </div>
+      </div>
+      <div class="column is-one-quarter-desktop is-half-tablet">
+        <div class="card-highlight">
+          <div class="icon-large"><i class="fas fa-brain"></i></div>
+          <h3>Anatomy of LLMs</h3>
+          <p>Decode internal semantic features, neural circuits, and complex behaviors like reasoning, factual recall, and ICL.</p>
+        </div>
+      </div>
+      <div class="column is-one-quarter-desktop is-half-tablet">
+        <div class="card-highlight">
+          <div class="icon-large"><i class="fas fa-industry"></i></div>
+          <h3>Industrial Applications</h3>
+          <p>Data synthesis, corpus filtering, pinpoint training for precise gains, and extreme low-bit quantization.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Target Audience -->
+<section class="section section-light" id="audience">
+  <div class="container">
+    <h2 class="section-title has-text-centered">Target Audience & Prerequisites</h2>
+    <div class="columns is-centered" style="margin-top:1.5rem;">
+      <div class="column is-5">
+        <h3 class="audience-heading"><i class="fas fa-users"></i> Who Should Attend</h3>
+        <ul class="audience-list">
+          <li><strong>AI/ML Researchers</strong> — Trustworthy AI & Mechanistic Interpretability</li>
+          <li><strong>LLM Engineers</strong> — Training, fine-tuning, and aligning LLMs</li>
+          <li><strong>Data Scientists</strong> — Data mining & LLM cognition intersection</li>
+          <li><strong>Deployment Engineers</strong> — Model compression & serving frameworks</li>
+        </ul>
+      </div>
+      <div class="column is-5">
+        <h3 class="audience-heading"><i class="fas fa-graduation-cap"></i> Expected Background</h3>
+        <ul class="audience-list">
+          <li><span class="check">✓</span> Solid foundation in ML/DL (Transformer architecture)</li>
+          <li><span class="check">✓</span> Basic LLM training pipeline (Pre-training, SFT, Alignment)</li>
+          <li><span class="check">✓</span> Python & PyTorch proficiency</li>
+        </ul>
+        <h3 class="audience-heading" style="margin-top:1.2rem;"><i class="fas fa-star"></i> Helpful (Not Required)</h3>
+        <ul class="audience-list">
+          <li><span class="star">★</span> Experience with sparse autoencoders</li>
+          <li><span class="star">★</span> Familiarity with causal tracing / probing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tutorial Schedule -->
+<section class="section" id="schedule">
+  <div class="container">
+    <h2 class="section-title has-text-centered">Tutorial Schedule</h2>
+    <p class="section-subtitle has-text-centered">A 3-hour comprehensive journey through LLM interpretability</p>
+
+    <div class="columns is-centered">
+      <div class="column is-two-thirds">
+        <div class="schedule">
+
+          <div class="schedule-item">
+            <div class="schedule-time">
+              <span class="schedule-duration">30 min</span>
+              <span class="schedule-slot">Part I</span>
+            </div>
+            <div class="schedule-detail">
+              <h3>Introduction — Unlocking the Black Box</h3>
+              <span class="schedule-format"><i class="fas fa-chalkboard-teacher"></i> Lecture</span>
+              <ul>
+                <li>The evolution of LLM interpretability</li>
+                <li>Key recent breakthroughs from leading research teams</li>
+                <li>Circuit Tracing, Emergent Introspection, Persona Features</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="schedule-item">
+            <div class="schedule-time">
+              <span class="schedule-duration">30 min</span>
+              <span class="schedule-slot">Part II</span>
+            </div>
+            <div class="schedule-detail">
+              <h3>Methodology</h3>
+              <span class="schedule-format"><i class="fas fa-chalkboard-teacher"></i> Lecture & <i class="fas fa-laptop-code"></i> Demo</span>
+              <ul>
+                <li>Foundational theories: Mathematical Framework for Transformer Circuits</li>
+                <li>Biological mechanisms in LLMs</li>
+                <li>Core methods: LogitLens, Path Patching, Neuron Descriptions</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="schedule-item">
+            <div class="schedule-time">
+              <span class="schedule-duration">35 min</span>
+              <span class="schedule-slot">Part III</span>
+            </div>
+            <div class="schedule-detail">
+              <h3>Anatomy of LLMs</h3>
+              <span class="schedule-format"><i class="fas fa-chalkboard-teacher"></i> Lecture & <i class="fas fa-laptop-code"></i> Demo</span>
+              <ul>
+                <li>Decoding semantic features and neural circuits</li>
+                <li>Sparse Autoencoders & Low-Rank Sparse Decomposition</li>
+                <li>Interpreting reasoning, factual recall, and in-context learning</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="schedule-item schedule-break">
+            <div class="schedule-time">
+              <span class="schedule-duration">20 min</span>
+              <span class="schedule-slot"><i class="fas fa-mug-hot"></i></span>
+            </div>
+            <div class="schedule-detail">
+              <h3>Coffee Break</h3>
+            </div>
+          </div>
+
+          <div class="schedule-item">
+            <div class="schedule-time">
+              <span class="schedule-duration">45 min</span>
+              <span class="schedule-slot">Part IV</span>
+            </div>
+            <div class="schedule-detail">
+              <h3>Applications</h3>
+              <span class="schedule-format"><i class="fas fa-chalkboard-teacher"></i> Lecture & <i class="fas fa-laptop-code"></i> Demo</span>
+              <ul>
+                <li><strong>Data Synthesis:</strong> Interpretability-driven corpus filtering & data diagnosis</li>
+                <li><strong>Pinpoint Training:</strong> Precise capability gains via interpretability guidance</li>
+                <li><strong>Pinpoint Quantization:</strong> Extreme low-bit compression with minimal capability loss</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="schedule-item">
+            <div class="schedule-time">
+              <span class="schedule-duration">20 min</span>
+              <span class="schedule-slot">Part V</span>
+            </div>
+            <div class="schedule-detail">
+              <h3>Advanced Topics</h3>
+              <span class="schedule-format"><i class="fas fa-chalkboard-teacher"></i> Lecture</span>
+              <ul>
+                <li>Inspiring the design of frontier architectures</li>
+                <li>Transfer to agentic systems and thinking models</li>
+                <li>Scaling interpretability to next-generation LLMs</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Presenters -->
+<section class="section section-light" id="presenters">
+  <div class="container">
+    <h2 class="section-title has-text-centered">Presenters</h2>
+    <div class="columns is-multiline is-centered presenter-grid">
+
+      <div class="column is-4">
+        <div class="presenter-card">
+          <div class="presenter-avatar">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h3 class="presenter-name">Jieping Ye</h3>
+          <p class="presenter-affil">Vice President, Alibaba Group</p>
+          <p class="presenter-bio">
+            IEEE Fellow (2019) & ACM Distinguished Scientist (2020). 450+ papers, 54,500+ citations, h-index 117. Research in ML, data mining, and AI. Honors include NSF CAREER Award and KDD Best Student Paper Award.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div class="presenter-card">
+          <div class="presenter-avatar">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h3 class="presenter-name">Zhengfu He</h3>
+          <p class="presenter-affil">PhD Student, Fudan University (OpenMOSS Team)</p>
+          <p class="presenter-bio">
+            Leads interpretability research at OpenMOSS. Pioneered SAE scaling to Llama-3.1-8B, novel attention replacement models (Lorsa), and Complete Replacement Models for circuit tracing. 6 papers at ICLR/ACL/EMNLP, 900+ citations.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div class="presenter-card">
+          <div class="presenter-avatar">
+            <i class="fas fa-user-astronaut"></i>
+          </div>
+          <h3 class="presenter-name">Xu Shen</h3>
+          <p class="presenter-affil">Senior Algorithm Expert, Tongyi Lab</p>
+          <p class="presenter-bio">
+            Leads the Large Model Interpretability team. Ph.D. from USTC. Focus on internal mechanisms and operational principles of large models. 40+ papers at ICLR/ICML/NeurIPS/ACL/CVPR, 2,400+ citations.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <h2 class="section-title has-text-centered" style="margin-top:2.5rem;">Contributors</h2>
+    <div class="columns is-multiline is-centered presenter-grid">
+
+      <div class="column is-4">
+        <div class="presenter-card contributor-card">
+          <h3 class="presenter-name">Xuanjing Huang</h3>
+          <p class="presenter-affil">Professor, Fudan University</p>
+          <p class="presenter-bio">
+            NLP and LLM research. 300+ papers, 30,000+ citations, 8 outstanding paper awards. Executive Committee Member of ACL, Chair of AACL.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div class="presenter-card contributor-card">
+          <h3 class="presenter-name">Wei Zhang</h3>
+          <p class="presenter-affil">Senior Algorithm Engineer, Tongyi Lab</p>
+          <p class="presenter-bio">
+            Ph.D. from USTC. Research on internal computational mechanisms and interpretability-driven approaches. Publications at ICML, CVPR, ICCV.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div class="presenter-card contributor-card">
+          <h3 class="presenter-name">Lulu Zhang</h3>
+          <p class="presenter-affil">Technical Development Advisor, Tongyi Lab</p>
+          <p class="presenter-bio">
+            Research collaboration and academic engagement. Workflow Chair for KDD 2023 ADS Track, co-organized KDD Cup 2020.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Key References -->
+<section class="section" id="references">
+  <div class="container">
+    <h2 class="section-title has-text-centered">Key References</h2>
+    <div class="columns is-centered">
+      <div class="column is-two-thirds">
+        <div class="references-list">
+          <div class="reference-item">
+            <span class="ref-tag">Circuit Tracing</span>
+            <p>Ameisen et al. "Circuit Tracing: Revealing Computational Graphs in Language Models." <em>Transformer Circuits Thread</em>, 2025.</p>
+          </div>
+          <div class="reference-item">
+            <span class="ref-tag">Biology of LLMs</span>
+            <p>Lindsey et al. "On the Biology of a Large Language Model." <em>Transformer Circuits Thread</em>, 2025.</p>
+          </div>
+          <div class="reference-item">
+            <span class="ref-tag">LlamaScope SAE</span>
+            <p>He et al. "Llama Scope: Extracting Millions of Features from Llama-3.1-8B with Sparse Autoencoders." 2024.</p>
+          </div>
+          <div class="reference-item">
+            <span class="ref-tag">Pinpoint Tuning</span>
+            <p>Chen et al. "From Yes-Men to Truth-Tellers: Addressing Sycophancy in Large Language Models with Pinpoint Tuning." <em>ICML</em>, 2024.</p>
+          </div>
+          <div class="reference-item">
+            <span class="ref-tag">Complete Circuit Tracing</span>
+            <p>Shu et al. "Bridging the Attention Gap: Complete Replacement Models for Complete Circuit Tracing." <em>OpenMOSS</em>, 2026.</p>
+          </div>
+          <div class="reference-item">
+            <span class="ref-tag">Attention Decomposition</span>
+            <p>He et al. "Towards Understanding the Nature of Attention with Low-Rank Sparse Decomposition." <em>ICLR</em>, 2026.</p>
+          </div>
+          <div class="reference-item">
+            <span class="ref-tag">Multilingual Circuits</span>
+            <p>Sun et al. "Bridging the Language Gap: Uncovering and Aligning Shared Circuits for Multi-Hop Reasoning in Multilingual LLMs." <em>AAAI</em>, 2026.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slides -->
+<section class="section" id="slides">
+  <div class="container">
+    <h2 class="section-title has-text-centered">Tutorial Slides</h2>
+    <p class="section-subtitle has-text-centered">Download or view our tutorial materials</p>
+    <div class="columns is-centered">
+      <div class="column is-two-thirds">
+        <div class="slides-box">
+          <div class="slides-item">
+            <div class="slides-icon"><i class="fas fa-file-pdf"></i></div>
+            <div class="slides-info">
+              <h3>Full Tutorial Slides</h3>
+              <p>Complete slide deck covering all five parts of the tutorial.</p>
+            </div>
+            <div class="slides-actions">
+              <a class="button is-small is-rounded is-link disabled-btn" href="#">
+                <span class="icon"><i class="fas fa-download"></i></span>
+                <span>Coming Soon</span>
+              </a>
+            </div>
+          </div>
+          <div class="slides-item">
+            <div class="slides-icon"><i class="fas fa-laptop-code"></i></div>
+            <div class="slides-info">
+              <h3>Code & Demo Notebooks</h3>
+              <p>Interactive Jupyter notebooks for hands-on exercises.</p>
+            </div>
+            <div class="slides-actions">
+              <a class="button is-small is-rounded is-link is-outlined disabled-btn" href="#">
+                <span class="icon"><i class="fab fa-github"></i></span>
+                <span>Coming Soon</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
+<section class="section section-light" id="bibtex">
+  <div class="container">
+    <h2 class="section-title has-text-centered">Citing This Tutorial</h2>
+    <div class="columns is-centered">
+      <div class="column is-two-thirds">
+        <p class="has-text-centered" style="margin-bottom:1rem;color:#555;">If you find this tutorial helpful, please cite:</p>
+        <pre><code class="lang-bibtex">@inproceedings{zhang2026interpretability,
+  title={Interpretability in the Era of Large Language Models: Mechanistic Methodology, Empirical Practices, and Applications},
+  author={Zhang, Wei and He, Zhengfu and Zhang, Lulu and Huang, Xuanjing and Ye, Jieping and Shen, Xu},
+  booktitle={Proceedings of the 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2 (KDD '26)},
+  year={2026},
+  address={Jeju Island, Republic of Korea},
+  doi={10.1145/3770855.3816451}
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+  <div class="container">
+    <h2 class="section-title has-text-centered">Contact</h2>
+    <div class="columns is-centered">
+      <div class="column is-two-thirds has-text-centered">
+        <p class="contact-text">
+          For any questions regarding this tutorial, please reach out to:
+        </p>
+        <div class="contact-cards">
+          <a class="contact-card" href="mailto:xiwei.zw@alibaba-inc.com">
+            <i class="fas fa-envelope"></i>
+            <span>xiwei.zw@alibaba-inc.com</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container has-text-centered">
+    <div class="footer-links">
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fas fa-file-pdf"></i></a>
+      <a href="mailto:xiwei.zw@alibaba-inc.com"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p class="footer-text">
+      &copy; 2026 Tongyi Lab, Alibaba Group & Fudan University. All rights reserved.
+    </p>
+    <p class="footer-credit">
+      Website template inspired by <a href="https://nerfies.github.io/">Nerfies</a>.
+      Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
